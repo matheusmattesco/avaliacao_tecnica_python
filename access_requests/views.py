@@ -1,3 +1,9 @@
 from django.shortcuts import render
+from rest_framework import generics
 
-# Create your views here.
+from .models import AccessRequest
+from .serializers import AccessRequestSerializer
+
+class AccessRequestListCreateView(generics.ListCreateAPIView):
+    queryset = AccessRequest.objects.all()
+    serializer_class = AccessRequestSerializer
