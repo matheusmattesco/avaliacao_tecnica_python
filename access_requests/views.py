@@ -11,8 +11,21 @@ from .serializers import (
 from .services import AccessRequestService, InvalidStatusError
 
 class AccessRequestListCreateView(generics.ListCreateAPIView):
-    queryset = AccessRequest.objects.all()
     serializer_class = AccessRequestSerializer
+
+    def get_queryset(self):
+        queryset = AccessRequest.objects.all()
+
+        status_filter = self.request.query_params.get("status")
+        system_filter = self.request.query_params.get("system")
+
+        if status_filter:
+            queryset = queryset.filter(status=status_filter)
+
+        if system_filter:
+            queryset = queryset.filter(system=system_filter)
+
+        return queryset
 
 class AccessRequestDecisionView(APIView):
 
