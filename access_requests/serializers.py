@@ -26,7 +26,6 @@ class AccessRequestSerializer(serializers.ModelSerializer):
             "updated_at",
         ]
 
-
 class DecisionHistorySerializer(serializers.ModelSerializer):
     class Meta:
         model = DecisionHistory

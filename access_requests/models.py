@@ -37,7 +37,7 @@ class AccessRequest(models.Model):
               name="unique_pending_access_request",
           )
       ]
-
+      
 class DecisionHistory(models.Model):
 
   class Action(models.TextChoices):
